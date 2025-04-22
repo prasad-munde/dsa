@@ -63,15 +63,23 @@ class BinarySearchTree:
 # Usage of the BST
 bst = BinarySearchTree()
 
-# Insert nodes
-values = [10, 5, 15, 3, 7, 18, 13, 12, 17]
-for val in values:
-    bst.insert(val)
+# User input for the BST
+print("Enter values to insert into the Binary Search Tree. Enter 'done' when you are finished.")
+while True:
+    user_input = input("Enter a value: ")
+    if user_input.lower() == 'done':
+        break
+    try:
+        value = int(user_input)
+        bst.insert(value)
+    except ValueError:
+        print("Please enter a valid integer.")
 
 # i. Insert new node
-bst.insert(6)
+new_value = int(input("Enter a new value to insert: "))
+bst.insert(new_value)
 
-# ii. Find number of nodes in longest path from root (height of tree)
+# ii. Find number of nodes in the longest path from root (height of tree)
 print(f"Height (longest path) from root: {bst.height(bst.root)}")
 
 # iii. Find minimum data value
@@ -95,7 +103,7 @@ bst.inorder(bst.root)
 print()
 
 # vii. Search for a value
-value_to_search = 7
+value_to_search = int(input("Enter a value to search for: "))
 found_node = bst.search(bst.root, value_to_search)
 if found_node:
     print(f"Value {value_to_search} found in the tree.")
