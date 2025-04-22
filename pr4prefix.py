@@ -5,7 +5,7 @@ class Node:
         self.right = None
 
 class ExpressionTree:
-    def _init_(self):
+    def __init__(self):
         self.root = None
 
     def construct_from_prefix(self, prefix):
@@ -52,7 +52,7 @@ class ExpressionTree:
         self.root = None  # Python garbage collection will handle the rest
 
 # Main Execution
-expression = "+--a*bc/def"
+expression = input("Enter a prefix expression: ")  # Take user input for prefix expression
 tree = ExpressionTree()
 tree.construct_from_prefix(expression)
 
@@ -62,4 +62,4 @@ print("Post-order traversal result:", "".join(post_order_result))
 
 # Deleting the tree (will be handled automatically by Python's garbage collection)
 tree.delete_tree()
-print ("Tree deleted.")
+print("Tree deleted.")
