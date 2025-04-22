@@ -47,13 +47,15 @@ class DictionaryBST:
         elif keyword > node.keyword:
             node.right = self._delete(node.right, keyword)
         else:
+            # Node with the keyword found, now delete
             if node.left is None:
                 return node.right
             elif node.right is None:
                 return node.left
+            # Node with two children, get the inorder successor (smallest in the right subtree)
             temp = self._min_value_node(node.right)
-            node.keyword, node.meaning = temp.keyword, temp.meaning
-            node.right = self._delete(node.right, temp.keyword)
+            node.keyword, node.meaning = temp.keyword, temp.meaning  # Copy inorder successor's content to this node
+            node.right = self._delete(node.right, temp.keyword)  # Delete inorder successor
         return node
     
     def _min_value_node(self, node):
@@ -96,22 +98,35 @@ class DictionaryBST:
 
 # Example Usage
 dictionary = DictionaryBST()
-dictionary.insert(50, "Root Node")
-dictionary.insert(30, "Left Child of 50")
-dictionary.insert(70, "Right Child of 50")
-dictionary.insert(20, "Left Child of 30")
-dictionary.insert(40, "Right Child of 30")
-dictionary.insert(60, "Left Child of 70")
-dictionary.insert(80, "Right Child of 70")
 
-print("Ascending Order:", dictionary.inorder())
+# Adding entries to the dictionary
+dictionary.insert("apple", "A fruit")
+dictionary.insert("banana", "A yellow fruit")
+dictionary.insert("cat", "A small domesticated carnivorous mammal")
+dictionary.insert("dog", "A domesticated carnivorous mammal")
+dictionary.insert("elephant", "A large herbivorous mammal")
+
+# Display dictionary in ascending order (alphabetically)
+print("Ascending Order (Sorted by keyword):", dictionary.inorder())
+
+# Display dictionary in descending order (reverse alphabetical)
 print("Descending Order:", dictionary.reverse_inorder())
 
-keyword = 60
+# Searching for a keyword
+keyword = input("Enter keyword to search: ")
 meaning, comparisons = dictionary.search(keyword)
 if meaning:
     print(f"Meaning of {keyword}: {meaning} (Found in {comparisons} comparisons)")
 else:
     print(f"Keyword {keyword} not found")
 
+# Deleting a keyword from the dictionary
+keyword_to_delete = input("Enter keyword to delete: ")
+dictionary.delete(keyword_to_delete)
+print(f"After deleting keyword '{keyword_to_delete}':")
+
+# Display dictionary after deletion
+print("Ascending Order (After Deletion):", dictionary.inorder())
+
+# Maximum comparisons required for search
 print("Maximum Comparisons Required:", dictionary.max_comparisons())
