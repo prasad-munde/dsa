@@ -1,5 +1,5 @@
 class CollisionHandling: 
-    def _init_(self): 
+    def __init__(self): 
         self.linearHash = []  # Hash Table for Linear Probing 
         self.quadraticHash = []  # Hash Table for Quadratic Probing 
         self.linearCount = 0  # No. of comparisons in Linear Probing 
